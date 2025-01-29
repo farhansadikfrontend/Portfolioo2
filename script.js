@@ -22,6 +22,13 @@ tl.from("header", {
   stagger: 0.2,
   scrub: 1,
 });
+tl.from(".home_text h3", {
+  opacity: 0,
+  x: -10,
+  duration: 0.3,
+  ease: "easeInOutQuad",
+  stagger: 1,
+});
 tl.from(
   ".home_text h1",
   {
@@ -75,31 +82,37 @@ let tl2 = gsap.timeline({
   },
 });
 
-tl2.from(".skill_item", {
-  width: "0%",
-  duration: 1,
-  stagger: 0.3,
+// tl2.from(".skill_item", {
+//   width: "0%",
+//   duration: 1,
+//   stagger: 0.3,
+// });
+
+gsap.from(".bar span", {
+  scrollTrigger: ".bar",
+  width: 0,
+  ease: "power2.inout",
+  duration: 3,
+  stagger: 0.1,
+});
+gsap.from(".bar abbr", {
+  scrollTrigger: ".bar",
+  left: 0,
+  ease: "power2.inout",
+  duration: 3,
+  stagger: 0.1,
 });
 
+// Project
 gsap.to(".projects_container", {
-  x: "-300vw",
+  x: "-300vw", // Move the container to the left by 300% of the viewport width
   ease: "power1.inOut", // Slow and smooth easing
   scrollTrigger: {
-    trigger: ".projects_container",
-    start: "top top",
-    end: "300%", // Increased duration
-    pin: true,
-    scrub: 2, // Smooth and slow
-  },
-});
-
-gsap.to(".projects_subtitle svg", {
-  rotate: 90,
-  scrollTrigger: {
-    trigger: ".projects_subtitle",
-    start: "top 0%",
-    end: "top 30%",
-    scrub: 3,
+    trigger: ".projects_container", // The element that triggers the animation
+    start: "top top", // The animation starts when the top of `.projects_container` hits the top of the viewport
+    end: "300%", // The animation ends when the container has scrolled over 300% of the viewport height
+    pin: true, // Pin the container during the animation
+    scrub: 2, // Controls how smooth the scrolling is (higher values make it slower)
   },
 });
 
